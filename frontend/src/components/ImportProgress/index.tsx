@@ -50,14 +50,14 @@ const STAGE_ICONS: Record<StreamProgress['stage'], React.ReactNode> = {
 };
 
 function BatchCard({ batch, index }: { batch: BatchProgress; index: number }) {
-  const statusColors = {
+  const statusColors: Record<BatchProgress['status'], string> = {
     pending: styles.batchPending,
     processing: styles.batchProcessing,
     completed: styles.batchCompleted,
     failed: styles.batchFailed,
   };
 
-  const statusIcons = {
+  const statusIcons: Record<BatchProgress['status'], React.ReactNode> = {
     pending: <span className={styles.dotPending} aria-hidden="true" />,
     processing: <div className={styles.spinnerSmall} aria-hidden="true" />,
     completed: (
