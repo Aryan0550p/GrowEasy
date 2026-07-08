@@ -1,4 +1,4 @@
-import type { CsvPreview, ImportResult, StreamProgress } from '../../shared/src/types';
+import type { CsvPreview, ImportResult, StreamProgress } from '../../../shared/src/types';
 
 const BASE_URL =
   typeof window !== 'undefined'

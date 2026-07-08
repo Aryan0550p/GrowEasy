@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import type { CsvPreview, ImportResult, StreamProgress } from '../../shared/src/types';
+import type { CsvPreview, ImportResult, StreamProgress } from '../../../shared/src/types';
 import type { ToastMessage } from '../types';
 import { uploadCsv, confirmImport, getStreamUrl } from '../lib/api';
 import { useSSE } from './useSSE';

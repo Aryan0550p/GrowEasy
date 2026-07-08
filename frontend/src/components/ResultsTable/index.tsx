@@ -153,7 +153,7 @@ export function ResultsTable({ result, onReset }: ResultsTableProps) {
       {hasErrors && (
         <div className={styles.errorList} role="alert">
           <p className={styles.errorTitle}>⚠️ Some batches had errors:</p>
-          {result.errors.map((e, i) => (
+          {result.errors.map((e: string, i: number) => (
             <p key={i} className={styles.errorItem}>{e}</p>
           ))}
         </div>

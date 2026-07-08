@@ -7,7 +7,7 @@ export type {
   CsvPreview,
   BatchProgress,
   StreamProgress,
-} from '../../shared/src/types';
+} from '../../../shared/src/types';
 
 /* ─────────────────────────────────────────────────────────────────────────── */
 /*  Frontend-specific types                                                     */
