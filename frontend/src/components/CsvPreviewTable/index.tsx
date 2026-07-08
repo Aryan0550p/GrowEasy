@@ -73,7 +73,7 @@ export function CsvPreviewTable({ preview, onConfirm, onBack, isLoading }: CsvPr
             <thead>
               <tr>
                 <th className={styles.rowNumTh} aria-label="Row number">#</th>
-                {headers.map((h) => (
+                {headers.map((h: string) => (
                   <th key={h} className={styles.th} title={h}>
                     <span className="truncate">{h}</span>
                   </th>
@@ -107,7 +107,7 @@ export function CsvPreviewTable({ preview, onConfirm, onBack, isLoading }: CsvPr
                     <tbody>
                       <tr className={styles.tr} data-odd={virtualRow.index % 2 === 1 ? 'true' : 'false'}>
                         <td className={styles.rowNumTd}>{virtualRow.index + 1}</td>
-                        {headers.map((h) => (
+                        {headers.map((h: string) => (
                           <td key={h} className={styles.td} title={row[h]}>
                             <span className="truncate">{row[h] || <span className={styles.empty}>—</span>}</span>
                           </td>
