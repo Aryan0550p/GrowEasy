@@ -53,7 +53,7 @@ function LeadRow({ lead, index }: { lead: CrmLead; index: number }) {
   return (
     <div className={`${styles.row} ${index % 2 === 1 ? styles.rowOdd : ''}`}>
       {LEAD_COLUMNS.map(({ key, width }) => (
-        <div key={key} className={styles.cell} style={{ width, minWidth: width }}>
+        <div key={key as string} className={styles.cell} style={{ width, minWidth: width }}>
           {key === 'crm_status' && lead[key] ? (
             <span className={`badge ${CRM_STATUS_COLORS[lead[key]!] ?? 'badge-neutral'}`}>
               {CRM_STATUS_LABELS[lead[key]!] ?? lead[key]}
