@@ -1,0 +1,6 @@
+.toggleBtn {
+  transition: transform var(--duration-fast) var(--ease-spring), color var(--duration-fast);
+}
+.toggleBtn:hover {
+  transform: rotate(20deg) scale(1.1);
+}

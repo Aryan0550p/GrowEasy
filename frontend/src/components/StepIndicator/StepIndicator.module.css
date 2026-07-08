@@ -1,0 +1,117 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 8px 0;
+  position: relative;
+}
+
+.stepWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.connector {
+  width: 60px;
+  height: 2px;
+  background: var(--border-default);
+  border-radius: 1px;
+  transition: background var(--duration-slow) var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.connectorDone {
+  background: linear-gradient(90deg, var(--brand-from), var(--brand-to));
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+}
+
+.iconCircle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border-default);
+  background: var(--bg-glass);
+  color: var(--text-muted);
+  transition: all var(--duration-base) var(--ease-smooth);
+  position: relative;
+  z-index: 1;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color var(--duration-base);
+}
+
+/* Active step */
+.active .iconCircle {
+  background: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+  border-color: transparent;
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.active .label {
+  color: var(--brand-from);
+  font-weight: 600;
+}
+
+/* Completed step */
+.completed .iconCircle {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: var(--success);
+}
+.completed .label {
+  color: var(--success);
+  font-weight: 500;
+}
+
+/* Pending step */
+.pending .iconCircle {
+  opacity: 0.5;
+}
+.pending .label {
+  opacity: 0.5;
+}
+
+/* Pulse animation for active step */
+.pulse {
+  position: absolute;
+  top: 4px; left: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-from);
+  animation: pulse-ring 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0%   { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0;   transform: scale(1.5); }
+}
+
+@media (max-width: 600px) {
+  .connector { width: 30px; }
+  .iconCircle { width: 36px; height: 36px; }
+  .iconCircle svg { width: 14px; height: 14px; }
+  .label { font-size: 10px; }
+  .pulse { width: 36px; height: 36px; }
+}
+
+@media (max-width: 400px) {
+  .connector { width: 16px; }
+  .label { display: none; }
+}

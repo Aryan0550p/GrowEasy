@@ -1,0 +1,94 @@
+.uploaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--bg-card);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: 350px;
+}
+
+.uploaderContainer.isDragging {
+  border-color: var(--brand-secondary);
+  background-color: var(--brand-secondary-light);
+}
+
+.uploaderContainer.isReject {
+  border-color: #ef4444;
+  background-color: #fee2e2;
+}
+
+.uploaderContainer.isDisabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.uploadIcon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-secondary);
+  margin-bottom: 24px;
+  background-color: var(--bg-page);
+  box-shadow: var(--shadow-sm);
+}
+
+.uploadTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.uploadSubtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.supportedFile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.requirementsText {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  max-width: 480px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.downloadBtn {
+  background-color: var(--brand-secondary-light);
+  color: var(--brand-secondary);
+  border: 1px solid transparent;
+}
+
+.downloadBtn:hover {
+  background-color: #99f6e4;
+  border-color: var(--brand-secondary);
+}
+
+/* ── Hidden File Input ──────────────────────────────────────────────────── */
+
+.fileInput {
+  display: none;
+}

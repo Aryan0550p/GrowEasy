@@ -1,0 +1,8 @@
+full_name,phone_number,email_address,company_name,location,ad_name,campaign_name,created_time,notes
+John Doe,+91 9876543210,john.doe@gmail.com,GrowEasy Technologies,Mumbai,2BHK Property Inquiry,Sarjapur Road Campaign,2026-01-15 10:30:00,Interested in immediate possession
+Sarah Johnson,+91 9876543211,sarah.j@example.com,Tech Solutions Pvt,Bangalore,Villa Inquiry,Eden Park Ads,2026-01-15 11:00:00,Will call back tomorrow
+Rajesh Patel,9876543212,rajesh.patel@yahoo.com,Startup Inc,Delhi,,Google Ads,2026-01-15 11:30:00,Not interested - already purchased
+Priya Singh,+919876543213,priya.singh@techcorp.com,Enterprise Corp,Pune,3BHK Inquiry,Meridian Tower Campaign,2026-01-15 12:00:00,Deal closed! Onboarding in progress.
+Alex Kumar,,alex@nowhere.com,,Hyderabad,Lead Form,Facebook,2026-01-15 12:30:00,No phone number
+Ghost User,,,,,,,2026-01-15 13:00:00,No contact info at all - should be skipped
+Maria Garcia,+1 555-123-4567,maria.garcia@corp.com,Global Corp,New York,International Lead,Varah Swamy Project,2026-01-15 13:30:00,International buyer; call at +1 555-999-0000

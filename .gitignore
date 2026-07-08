@@ -1,0 +1,36 @@
+# Node
+node_modules/
+*.log
+*.pid
+*.seed
+*.pid.lock
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+*.lcov
+
+# Docker
+*.dockerignore
+
+# Misc
+*.tgz
+*.tar.gz
