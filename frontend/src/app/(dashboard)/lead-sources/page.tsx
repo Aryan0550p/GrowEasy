@@ -174,7 +174,12 @@ export default function LeadSourcesDashboard() {
           )}
 
           {step === 2 && preview && (
-            <CsvPreviewTable preview={preview} />
+            <CsvPreviewTable 
+              preview={preview} 
+              onConfirm={handleConfirmImport} 
+              onBack={handleBack} 
+              isLoading={isLoading} 
+            />
           )}
 
           {step === 3 && progress && (
