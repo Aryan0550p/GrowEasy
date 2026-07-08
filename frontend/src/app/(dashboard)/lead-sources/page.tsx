@@ -187,7 +187,10 @@ export default function LeadSourcesDashboard() {
           )}
 
           {step === 4 && result && (
-            <ResultsTable result={result} />
+            <ResultsTable 
+              result={result} 
+              onReset={handleReset} 
+            />
           )}
         </div>
       </Modal>
