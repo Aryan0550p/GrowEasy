@@ -1,24 +1,52 @@
 'use client';
 
 import { useState } from 'react';
+import { Modal } from '@/components/Modal';
 
 export default function TeleCalling() {
   const [twilioStatus, setTwilioStatus] = useState('Disconnected');
   const [exotelStatus, setExotelStatus] = useState('Disconnected');
   const [toast, setToast] = useState('');
+  
+  const [isTwilioModalOpen, setIsTwilioModalOpen] = useState(false);
+  const [twilioCreds, setTwilioCreds] = useState({ sid: '', token: '', phone: '' });
 
-  const handleConnect = (provider: string, status: string, setStatusFn: (s: string) => void) => {
-    if (status === 'Connected') {
-      if (confirm(`Disconnect ${provider}?`)) {
-        setStatusFn('Disconnected');
-        setToast(`${provider} disconnected.`);
+  const handleConnectTwilio = () => {
+    if (twilioStatus === 'Connected') {
+      if (confirm('Disconnect Twilio?')) {
+        setTwilioStatus('Disconnected');
+        setTwilioCreds({ sid: '', token: '', phone: '' });
+        setToast('Twilio disconnected.');
         setTimeout(() => setToast(''), 3000);
       }
     } else {
-      setToast(`Connecting to ${provider}...`);
+      setIsTwilioModalOpen(true);
+    }
+  };
+
+  const handleSaveTwilio = () => {
+    if (!twilioCreds.sid || !twilioCreds.token) return alert('Account SID and Auth Token are required.');
+    setIsTwilioModalOpen(false);
+    setToast('Verifying Twilio credentials...');
+    setTimeout(() => {
+      setTwilioStatus('Connected');
+      setToast('Twilio connected successfully!');
+      setTimeout(() => setToast(''), 3000);
+    }, 1500);
+  };
+
+  const handleConnectExotel = () => {
+    if (exotelStatus === 'Connected') {
+      if (confirm('Disconnect Exotel?')) {
+        setExotelStatus('Disconnected');
+        setToast('Exotel disconnected.');
+        setTimeout(() => setToast(''), 3000);
+      }
+    } else {
+      setToast('Connecting to Exotel...');
       setTimeout(() => {
-        setStatusFn('Connected');
-        setToast(`${provider} connected successfully!`);
+        setExotelStatus('Connected');
+        setToast('Exotel connected successfully!');
         setTimeout(() => setToast(''), 3000);
       }, 1500);
     }
@@ -54,7 +82,7 @@ export default function TeleCalling() {
             </div>
             <button 
               className={`btn ${twilioStatus === 'Connected' ? 'btn-secondary' : 'btn-outline'}`}
-              onClick={() => handleConnect('Twilio', twilioStatus, setTwilioStatus)}
+              onClick={handleConnectTwilio}
             >
               {twilioStatus === 'Connected' ? 'Manage' : 'Connect'}
             </button>
@@ -70,13 +98,62 @@ export default function TeleCalling() {
             </div>
             <button 
               className={`btn ${exotelStatus === 'Connected' ? 'btn-secondary' : 'btn-outline'}`}
-              onClick={() => handleConnect('Exotel', exotelStatus, setExotelStatus)}
+              onClick={handleConnectExotel}
             >
               {exotelStatus === 'Connected' ? 'Manage' : 'Connect'}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Twilio Configuration Modal */}
+      <Modal 
+        isOpen={isTwilioModalOpen} 
+        onClose={() => setIsTwilioModalOpen(false)}
+        title="Connect Twilio Account"
+        maxWidth="450px"
+        footer={
+          <>
+            <button className="btn btn-ghost" onClick={() => setIsTwilioModalOpen(false)}>Cancel</button>
+            <button className="btn btn-primary" onClick={handleSaveTwilio}>Verify & Connect</button>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Enter your Twilio API credentials to enable direct calling from the CRM.</p>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>Account SID *</label>
+            <input 
+              type="text" 
+              value={twilioCreds.sid}
+              onChange={e => setTwilioCreds({...twilioCreds, sid: e.target.value})}
+              placeholder="AC..."
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>Auth Token *</label>
+            <input 
+              type="password" 
+              value={twilioCreds.token}
+              onChange={e => setTwilioCreds({...twilioCreds, token: e.target.value})}
+              placeholder="••••••••••••••••"
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>Twilio Phone Number (Optional)</label>
+            <input 
+              type="text" 
+              value={twilioCreds.phone}
+              onChange={e => setTwilioCreds({...twilioCreds, phone: e.target.value})}
+              placeholder="+1234567890"
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+        </div>
+      </Modal>
+
     </div>
   );
 }

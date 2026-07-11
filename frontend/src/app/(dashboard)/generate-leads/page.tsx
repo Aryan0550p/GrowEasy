@@ -35,9 +35,10 @@ export default function GenerateLeads() {
     setNewCampaign({ name: '', type: 'Facebook Ads' });
   };
 
-  const handleViewAnalytics = (name: string) => {
-    setToast(`Navigating to analytics for ${name}...`);
-    setTimeout(() => setToast(''), 3000);
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+
+  const handleViewAnalytics = (camp: Campaign) => {
+    setSelectedCampaign(camp);
   };
 
   return (
@@ -92,7 +93,7 @@ export default function GenerateLeads() {
               </div>
             </div>
 
-            <button className="btn btn-outline" style={{ width: '100%' }} onClick={() => handleViewAnalytics(camp.name)}>View Analytics</button>
+            <button className="btn btn-outline" style={{ width: '100%' }} onClick={() => handleViewAnalytics(camp)}>View Analytics</button>
           </div>
         ))}
       </div>
@@ -133,6 +134,55 @@ export default function GenerateLeads() {
             </select>
           </div>
         </div>
+      </Modal>
+
+      {/* Analytics Modal */}
+      <Modal 
+        isOpen={selectedCampaign !== null} 
+        onClose={() => setSelectedCampaign(null)}
+        title={selectedCampaign ? `${selectedCampaign.name} Analytics` : 'Analytics'}
+        maxWidth="600px"
+        footer={
+          <button className="btn btn-primary" onClick={() => setSelectedCampaign(null)}>Close</button>
+        }
+      >
+        {selectedCampaign && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: '150px', padding: '16px', background: 'var(--bg-page)', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '8px' }}>Total Spend</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{selectedCampaign.spend}</div>
+              </div>
+              <div style={{ flex: 1, minWidth: '150px', padding: '16px', background: 'var(--bg-page)', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '8px' }}>Leads Generated</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--brand-success)' }}>{selectedCampaign.leads}</div>
+              </div>
+              <div style={{ flex: 1, minWidth: '150px', padding: '16px', background: 'var(--bg-page)', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '8px' }}>Cost Per Lead</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{selectedCampaign.cpl}</div>
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '16px' }}>Performance Overview (Mock Data)</h4>
+              <div style={{ height: '200px', display: 'flex', alignItems: 'flex-end', gap: '12px', padding: '24px 0', borderBottom: '1px solid var(--border-color)' }}>
+                {[...Array(7)].map((_, i) => {
+                  const height = Math.max(20, Math.random() * 100);
+                  return (
+                    <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '100%', height: `${height}%`, background: 'var(--brand-primary)', borderRadius: '4px 4px 0 0', opacity: 0.8 }}></div>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Day {i+1}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+              Source: <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{selectedCampaign.type}</span> • Status: <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{selectedCampaign.status}</span>
+            </p>
+          </div>
+        )}
       </Modal>
     </div>
   );

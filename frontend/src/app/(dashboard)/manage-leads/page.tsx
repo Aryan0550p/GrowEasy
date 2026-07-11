@@ -63,6 +63,37 @@ export default function ManageLeads() {
     setNewLead({ name: '', email: '', phone: '', source: 'Manual Entry' });
   };
 
+  const handleExport = () => {
+    if (filteredLeads.length === 0) return alert('No leads to export.');
+    
+    const headers = ['ID', 'Name', 'Email', 'Phone', 'Source', 'Status', 'Date', 'Owner'];
+    const csvRows = [headers.join(',')];
+    
+    for (const lead of filteredLeads) {
+      const values = [
+        lead.id,
+        `"${lead.name}"`,
+        `"${lead.email}"`,
+        `"${lead.phone}"`,
+        `"${lead.source}"`,
+        `"${lead.status}"`,
+        lead.date,
+        `"${lead.owner}"`
+      ];
+      csvRows.push(values.join(','));
+    }
+    
+    const csvContent = csvRows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `leads_export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div style={{ padding: '40px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
@@ -71,7 +102,7 @@ export default function ManageLeads() {
           <p style={{ color: 'var(--text-secondary)' }}>View, filter, and organize your CRM leads.</p>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
-          <button className="btn btn-secondary">
+          <button className="btn btn-secondary" onClick={handleExport}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Export
           </button>
