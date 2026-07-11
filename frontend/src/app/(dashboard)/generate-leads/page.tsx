@@ -61,7 +61,7 @@ export default function GenerateLeads() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
         {campaigns.map((camp, i) => (
-          <div key={i} style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '24px' }}>
+          <div key={i} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
               <div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '4px' }}>{camp.name}</h3>
@@ -124,7 +124,7 @@ export default function GenerateLeads() {
             <select
               value={newCampaign.type}
               onChange={e => setNewCampaign({...newCampaign, type: e.target.value})}
-              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'white' }}
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}
             >
               <option>Facebook Ads</option>
               <option>Google Ads</option>

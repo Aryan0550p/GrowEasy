@@ -97,7 +97,7 @@ export default function ManageLeads() {
         <select 
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', outline: 'none', fontSize: '0.875rem', background: 'white' }}
+          style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', outline: 'none', fontSize: '0.875rem', background: 'var(--bg-card)' }}
         >
           <option>All Statuses</option>
           <option>New</option>
@@ -109,7 +109,7 @@ export default function ManageLeads() {
         <select 
           value={sourceFilter}
           onChange={(e) => setSourceFilter(e.target.value)}
-          style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', outline: 'none', fontSize: '0.875rem', background: 'white' }}
+          style={{ padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', outline: 'none', fontSize: '0.875rem', background: 'var(--bg-card)' }}
         >
           <option>All Sources</option>
           <option>CSV Import</option>
@@ -125,7 +125,7 @@ export default function ManageLeads() {
       </div>
 
       {/* Table */}
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead style={{ background: 'var(--bg-page)', borderBottom: '1px solid var(--border-color)' }}>

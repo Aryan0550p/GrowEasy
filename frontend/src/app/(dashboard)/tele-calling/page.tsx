@@ -39,7 +39,7 @@ export default function TeleCalling() {
         </div>
       </div>
 
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '32px', maxWidth: '600px' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '32px', maxWidth: '600px' }}>
         
         <h2 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '16px' }}>Available Integrations</h2>
         

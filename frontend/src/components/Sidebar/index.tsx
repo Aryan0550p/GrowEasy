@@ -3,9 +3,26 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '../ThemeToggle';
+import { useEffect, useState } from 'react';
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [userName, setUserName] = useState('VK Test');
+  const [userInitials, setUserInitials] = useState('VK');
+
+  useEffect(() => {
+    try {
+      const userStr = localStorage.getItem('groweasy_user');
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        if (user && user.name) {
+          setUserName(user.name);
+          const initials = user.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase();
+          setUserInitials(initials || 'U');
+        }
+      }
+    } catch (e) {}
+  }, []);
 
   const isActive = (path: string) => pathname === path;
 
@@ -20,9 +37,9 @@ export function Sidebar() {
       </div>
       
       <div className="sidebar-profile">
-        <div className="profile-avatar">VK</div>
+        <div className="profile-avatar">{userInitials}</div>
         <div className="profile-info">
-          <span className="profile-name">VK Test</span>
+          <span className="profile-name">{userName}</span>
           <span className="profile-role">Owner</span>
         </div>
       </div>

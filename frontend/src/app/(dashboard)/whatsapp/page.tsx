@@ -38,7 +38,7 @@ export default function WhatsAppAccount() {
         </div>
       </div>
 
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ width: '48px', height: '48px', background: '#dcf8c6', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#075e54"><path d="M12.031 0C5.385 0 0 5.388 0 12.043c0 2.128.555 4.195 1.611 6.012L.15 23.364l5.45-1.43c1.761 1.01 3.766 1.543 5.832 1.543 6.645 0 12.03-5.388 12.03-12.043C23.461 5.388 18.075 0 12.031 0zm-1.097 18.513c-1.63-.035-3.238-.475-4.664-1.277l-.334-.199-3.467.91.925-3.38-.218-.348c-.881-1.401-1.347-3.037-1.347-4.733 0-4.887 3.977-8.867 8.872-8.867 4.896 0 8.874 3.98 8.874 8.867 0 4.888-3.978 8.867-8.874 8.867l.233.16z"/></svg>

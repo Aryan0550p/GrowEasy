@@ -58,7 +58,7 @@ export default function CRMFields() {
         </button>
       </div>
 
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead style={{ borderBottom: '1px solid var(--border-color)', background: 'var(--bg-page)' }}>
             <tr>
@@ -133,7 +133,7 @@ export default function CRMFields() {
             <select
               value={newField.type}
               onChange={e => setNewField({...newField, type: e.target.value})}
-              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'white' }}
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}
             >
               <option>Text</option>
               <option>Text Area</option>

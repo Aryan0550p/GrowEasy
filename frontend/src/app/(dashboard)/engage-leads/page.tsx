@@ -46,7 +46,7 @@ export default function EngageLeads() {
         </button>
       </div>
 
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
         <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--border-color)', background: 'var(--bg-page)' }}>
           <h2 style={{ fontSize: '1rem', fontWeight: 600 }}>Recent Broadcasts</h2>
         </div>
@@ -114,7 +114,7 @@ export default function EngageLeads() {
             <select
               value={newBroadcast.type}
               onChange={e => setNewBroadcast({...newBroadcast, type: e.target.value})}
-              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'white' }}
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}
             >
               <option>Email</option>
               <option>SMS</option>

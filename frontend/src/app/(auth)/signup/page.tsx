@@ -30,6 +30,7 @@ export default function Signup() {
         throw new Error(data.error || 'Failed to create account');
       }
 
+      localStorage.setItem('groweasy_user', JSON.stringify(data.user));
       router.push('/');
     } catch (err: any) {
       setError(err.message);

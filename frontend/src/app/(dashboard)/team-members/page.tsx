@@ -46,7 +46,7 @@ export default function TeamMembers() {
         </button>
       </div>
 
-      <div style={{ background: 'white', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead style={{ borderBottom: '1px solid var(--border-color)', background: 'var(--bg-page)' }}>
             <tr>
@@ -132,7 +132,7 @@ export default function TeamMembers() {
             <select
               value={newMember.role}
               onChange={e => setNewMember({...newMember, role: e.target.value})}
-              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'white' }}
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}
             >
               <option>Admin</option>
               <option>Agent</option>

@@ -29,6 +29,7 @@ export default function Login() {
         throw new Error(data.error || 'Failed to login');
       }
 
+      localStorage.setItem('groweasy_user', JSON.stringify(data.user));
       router.push('/');
     } catch (err: any) {
       setError(err.message);
