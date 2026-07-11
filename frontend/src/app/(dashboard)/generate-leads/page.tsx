@@ -165,11 +165,11 @@ export default function GenerateLeads() {
 
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '16px' }}>Performance Overview (Mock Data)</h4>
-              <div style={{ height: '200px', display: 'flex', alignItems: 'flex-end', gap: '12px', padding: '24px 0', borderBottom: '1px solid var(--border-color)' }}>
+              <div style={{ height: '200px', display: 'flex', alignItems: 'flex-end', gap: '12px', paddingBottom: '24px', borderBottom: '1px solid var(--border-color)' }}>
                 {[...Array(7)].map((_, i) => {
                   const height = Math.max(20, Math.random() * 100);
                   return (
-                    <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                    <div key={i} style={{ flex: 1, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
                       <div style={{ width: '100%', height: `${height}%`, background: 'var(--brand-primary)', borderRadius: '4px 4px 0 0', opacity: 0.8 }}></div>
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Day {i+1}</span>
                     </div>

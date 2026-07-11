@@ -35,21 +35,31 @@ export default function TeleCalling() {
     }, 1500);
   };
 
+  const [isExotelModalOpen, setIsExotelModalOpen] = useState(false);
+  const [exotelCreds, setExotelCreds] = useState({ accountSid: '', apiKey: '', apiToken: '' });
+
   const handleConnectExotel = () => {
     if (exotelStatus === 'Connected') {
       if (confirm('Disconnect Exotel?')) {
         setExotelStatus('Disconnected');
+        setExotelCreds({ accountSid: '', apiKey: '', apiToken: '' });
         setToast('Exotel disconnected.');
         setTimeout(() => setToast(''), 3000);
       }
     } else {
-      setToast('Connecting to Exotel...');
-      setTimeout(() => {
-        setExotelStatus('Connected');
-        setToast('Exotel connected successfully!');
-        setTimeout(() => setToast(''), 3000);
-      }, 1500);
+      setIsExotelModalOpen(true);
     }
+  };
+
+  const handleSaveExotel = () => {
+    if (!exotelCreds.accountSid || !exotelCreds.apiKey || !exotelCreds.apiToken) return alert('All API credentials are required.');
+    setIsExotelModalOpen(false);
+    setToast('Verifying Exotel credentials...');
+    setTimeout(() => {
+      setExotelStatus('Connected');
+      setToast('Exotel connected successfully!');
+      setTimeout(() => setToast(''), 3000);
+    }, 1500);
   };
 
   return (
@@ -148,6 +158,54 @@ export default function TeleCalling() {
               value={twilioCreds.phone}
               onChange={e => setTwilioCreds({...twilioCreds, phone: e.target.value})}
               placeholder="+1234567890"
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+        </div>
+      </Modal>
+
+      {/* Exotel Configuration Modal */}
+      <Modal 
+        isOpen={isExotelModalOpen} 
+        onClose={() => setIsExotelModalOpen(false)}
+        title="Connect Exotel Account"
+        maxWidth="450px"
+        footer={
+          <>
+            <button className="btn btn-ghost" onClick={() => setIsExotelModalOpen(false)}>Cancel</button>
+            <button className="btn btn-primary" onClick={handleSaveExotel}>Verify & Connect</button>
+          </>
+        }
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>Enter your Exotel API credentials to enable India/APAC calling.</p>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>Account SID *</label>
+            <input 
+              type="text" 
+              value={exotelCreds.accountSid}
+              onChange={e => setExotelCreds({...exotelCreds, accountSid: e.target.value})}
+              placeholder="Your Exotel Account SID"
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>API Key *</label>
+            <input 
+              type="text" 
+              value={exotelCreds.apiKey}
+              onChange={e => setExotelCreds({...exotelCreds, apiKey: e.target.value})}
+              placeholder="Your API Key"
+              style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
+            />
+          </div>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 500, marginBottom: '4px' }}>API Token *</label>
+            <input 
+              type="password" 
+              value={exotelCreds.apiToken}
+              onChange={e => setExotelCreds({...exotelCreds, apiToken: e.target.value})}
+              placeholder="••••••••••••••••"
               style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--bg-card)', color: 'var(--text-primary)' }} 
             />
           </div>
